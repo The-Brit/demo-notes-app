@@ -6,7 +6,7 @@ export const main = handler(async (event) => {
     const params = {
         TableName: process.env.TABLE_NAME,
         Key: {
-            userId: "123", // The id of the author
+            userId: event.requestContext.authorizer.iam.cognitoIdentity.identityId, // The id of the author
             noteId: event.pathParameters.id, // The id of the note from the path
         },
         // 'UpdateExpression' defines the attributes to tbe updated
